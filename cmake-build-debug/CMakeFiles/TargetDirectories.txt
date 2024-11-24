@@ -1,0 +1,3 @@
+C:/Users/melta/Desktop/XO-game/cmake-build-debug/CMakeFiles/XO_game.dir
+C:/Users/melta/Desktop/XO-game/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/melta/Desktop/XO-game/cmake-build-debug/CMakeFiles/rebuild_cache.dir
