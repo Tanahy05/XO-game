@@ -9,4 +9,6 @@ add_executable(XO_game
         3x3X_O.h
         BoardGame_Classes.h
         main.cpp
-        PyramidX_O.h)
+        PyramidX_O.h
+        WordX_O.h
+        WordX_O.h)

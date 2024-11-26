@@ -105,7 +105,8 @@
 			[
 				0,
 				1,
-				3
+				3,
+				4
 			]
 		},
 		{
@@ -137,6 +138,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "PyramidX_O.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "WordX_O.h",
 			"sourceGroupIndex" : 0
 		}
 	],
