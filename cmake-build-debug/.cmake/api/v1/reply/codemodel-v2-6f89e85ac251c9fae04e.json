@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "XO_game::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-XO_game-Debug-f7d2cb45c7077da26d85.json",
+					"jsonFile" : "target-XO_game-Debug-d157877310584ab08271.json",
 					"name" : "XO_game",
 					"projectIndex" : 0
 				}
@@ -49,12 +49,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/melta/Desktop/XO-game/cmake-build-debug",
-		"source" : "C:/Users/melta/Desktop/XO-game"
+		"build" : "C:/Users/Lenovo/Desktop/XO-game/cmake-build-debug",
+		"source" : "C:/Users/Lenovo/Desktop/XO-game"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 6
+		"minor" : 7
 	}
 }

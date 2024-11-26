@@ -11,4 +11,6 @@ add_executable(XO_game
         main.cpp
         PyramidX_O.h
         WordX_O.h
-        WordX_O.h)
+        WordX_O.h
+        FiveX_O.h
+        InverseX_O.h)
