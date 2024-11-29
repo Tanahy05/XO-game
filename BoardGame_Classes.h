@@ -3,7 +3,7 @@
 
 #include <string>
 #include <vector>
-#include <unordered_map>
+#include<bits/stdc++.h>
 using namespace std;
 
 template <typename T>
@@ -23,15 +23,16 @@ public:
 
     /// Display the board and the pieces on it
     virtual void display_board() = 0;
-
+    virtual bool check_sum(int a,int b,int c)=0;
     /// Returns true if there is any winner
     virtual bool is_win() = 0;
-
     /// Return true if all moves are done and no winner
     virtual bool is_draw() = 0;
-
     /// Return true if the game is over
     virtual bool game_is_over() = 0;
+    bool check_horizontal();
+    bool check_vertical();
+    bool check_diagonal();
 };
 
 template <typename T>
@@ -48,7 +49,7 @@ public:
     Player(string n, T symbol);
     Player(T symbol); // For computer players
 
-    virtual void getmove(int& x, int& y) = 0;
+    virtual void getmove(int& x, int& y,int&n)=0 ;
     T getsymbol();
     string getname();
     void setBoard(Board<T>* b);
@@ -65,7 +66,7 @@ public:
     // Take a symbol and pass it to the parent
     RandomPlayer(T symbol);
     // Generate a random move
-    virtual void getmove(int& x, int& y) = 0;
+    virtual void getmove(int& x, int& y,int &n) = 0;
 };
 
 template <typename T>
@@ -175,4 +176,3 @@ void Player<T>::setBoard(Board<T>* b) {
 
 
 #endif //_BOARDGAME_CLASSES_H
-
