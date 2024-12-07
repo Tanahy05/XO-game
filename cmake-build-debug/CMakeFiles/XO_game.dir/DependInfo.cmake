@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/Lenovo/Desktop/XO-game/main.cpp" "CMakeFiles/XO_game.dir/main.cpp.obj" "gcc" "CMakeFiles/XO_game.dir/main.cpp.obj.d"
+  "C:/Users/melta/Desktop/XO-game/main.cpp" "CMakeFiles/XO_game.dir/main.cpp.obj" "gcc" "CMakeFiles/XO_game.dir/main.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

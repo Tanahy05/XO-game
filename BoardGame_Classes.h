@@ -23,7 +23,7 @@ public:
 
     /// Display the board and the pieces on it
     virtual void display_board() = 0;
-    virtual bool check_sum(int a,int b,int c)=0;
+    virtual bool check_sum(int a,int b,int c);
     /// Returns true if there is any winner
     virtual bool is_win() = 0;
     /// Return true if all moves are done and no winner
@@ -48,8 +48,8 @@ public:
     /// Optionally, you can give them a name
     Player(string n, T symbol);
     Player(T symbol); // For computer players
-
-    virtual void getmove(int& x, int& y,int&n)=0 ;
+    virtual void getmove(int& x, int& y)=0 ;
+    virtual void getmove(int& x, int& y,int& n);
     T getsymbol();
     string getname();
     void setBoard(Board<T>* b);
@@ -66,7 +66,8 @@ public:
     // Take a symbol and pass it to the parent
     RandomPlayer(T symbol);
     // Generate a random move
-    virtual void getmove(int& x, int& y,int &n) = 0;
+    virtual void getmove(int& x, int& y)=0 ;
+    virtual void getmove(int& x, int& y,int &n);
 };
 
 template <typename T>
@@ -85,7 +86,8 @@ public:
 
 #include <iostream>
 using namespace std;
-
+template <typename T>
+bool Board<T>::check_sum(int a, int b, int c) {return false;}
 template <typename T>
 GameManager<T>::GameManager(Board<T>* bPtr, Player<T>* playerPtr[2]) {
     boardPtr = bPtr;
@@ -122,6 +124,8 @@ void GameManager<T>::run() {
 using namespace std;
 // Constructor for Player with a name and symbol
 template <typename T>
+void Player<T>::getmove(int &x, int &y, int &n) {}
+template <typename T>
 Player<T>::Player(std::string n, T symbol) {
     this->name = n;
     this->symbol = symbol;
@@ -135,6 +139,8 @@ Player<T>::Player(T symbol) {
 }
 
 // Constructor for RandomPlayer, passing the symbol to the parent Player class
+template <typename T>
+void RandomPlayer<T>::getmove(int &x, int &y, int &n) {}
 template <typename T>
 RandomPlayer<T>::RandomPlayer(T symbol) : Player<T>(symbol) {}
 
