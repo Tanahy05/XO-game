@@ -98,6 +98,7 @@ bool FiveX_O_Board<T>::update_board(int x, int y, T mark) {
 
 template <typename T>
 void FiveX_O_Board<T>::display_board() {
+    system("CLS");
     for (int i = 0; i < this->rows; i++) {
         cout << "\n| ";
         for (int j = 0; j < this->columns; j++) {
@@ -119,69 +120,59 @@ template<typename T>
 void FiveX_O_Board<T>::count_patterns() {
     reset_counters();
 
-
+    // Check rows
     for (int i = 0; i < this->rows; i++) {
-        for (int j = 0; j < this->columns - 2; j++) {
-            // Check for rows
+        for (int j = 0; j <= this->columns - 3; j++) {
             if (this->board[i][j] != 0 &&
                 this->board[i][j] == this->board[i][j + 1] &&
                 this->board[i][j + 1] == this->board[i][j + 2]) {
-                if (this->board[i][j] == 'X') {
-                    Xcounter++;
-                } else if (this->board[i][j] == 'O') {
-                    Ocounter++;
-                }
+                if (this->board[i][j] == 'X') Xcounter++;
+                else if (this->board[i][j] == 'O') Ocounter++;
             }
         }
     }
 
     // Check columns
     for (int j = 0; j < this->columns; j++) {
-        for (int i = 0; i < this->rows - 2; i++) {
-            // Check for vertical 3-in-a-row
+        for (int i = 0; i <= this->rows - 3; i++) {
             if (this->board[i][j] != 0 &&
                 this->board[i][j] == this->board[i + 1][j] &&
                 this->board[i + 1][j] == this->board[i + 2][j]) {
-                if (this->board[i][j] == 'X') {
-                    Xcounter++;
-                } else if (this->board[i][j] == 'O') {
-                    Ocounter++;
-                }
+                if (this->board[i][j] == 'X') Xcounter++;
+                else if (this->board[i][j] == 'O') Ocounter++;
             }
         }
     }
 
-    // Check diagonals
-    for (int i = 0; i < this->rows - 2; i++) {
-        for (int j = 0; j < this->columns - 2; j++) {
-            // Check top left to bottom right diagonal
+    // Check diagonals (top-left to bottom-right)
+    for (int i = 0; i <= this->rows - 3; i++) {
+        for (int j = 0; j <= this->columns - 3; j++) {
             if (this->board[i][j] != 0 &&
                 this->board[i][j] == this->board[i + 1][j + 1] &&
                 this->board[i + 1][j + 1] == this->board[i + 2][j + 2]) {
-                if (this->board[i][j] == 'X') {
-                    Xcounter++;
-                } else if (this->board[i][j] == 'O') {
-                    Ocounter++;
-                }
+                if (this->board[i][j] == 'X') Xcounter++;
+                else if (this->board[i][j] == 'O') Ocounter++;
             }
+        }
+    }
 
-            // Check top right to bottom left diagonal
-            if (this->board[i][j + 2] != 0 &&
-                this->board[i][j + 2] == this->board[i + 1][j + 1] &&
-                this->board[i + 1][j + 1] == this->board[i + 2][j]) {
-                if (this->board[i][j + 2] == 'X') {
-                    Xcounter++;  // Increment X's counter
-                } else if (this->board[i][j + 2] == 'O') {
-                    Ocounter++;  // Increment O's counter
-                }
+    // Check diagonals (top-right to bottom-left)
+    for (int i = 0; i <= this->rows - 3; i++) {
+        for (int j = 2; j < this->columns; j++) {
+            if (this->board[i][j] != 0 &&
+                this->board[i][j] == this->board[i + 1][j - 1] &&
+                this->board[i + 1][j - 1] == this->board[i + 2][j - 2]) {
+                if (this->board[i][j] == 'X') Xcounter++;
+                else if (this->board[i][j] == 'O') Ocounter++;
             }
         }
     }
 }
 
+
 template <typename T>
 bool FiveX_O_Board<T>::is_win() {
-    if (this->n_moves==24) {
+    if (this->n_moves>=24) {
         count_patterns();
         if (Xcounter > Ocounter && mark=='X') {
             cout<<"Score: "<<"X :"<<Xcounter<<",O :"<<Ocounter<<endl;
@@ -199,7 +190,7 @@ bool FiveX_O_Board<T>::is_win() {
 // Return true if 24 moves are done and no winner
 template <typename T>
 bool FiveX_O_Board<T>::is_draw() {
-    return (this->n_moves == 24 && !is_win());
+    return (this->n_moves == 25 && !is_win());
 }
 
 template <typename T>

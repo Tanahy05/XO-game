@@ -95,6 +95,7 @@ bool InverseX_O_Board<T>::update_board(int x, int y, T mark) {
 // Display the board and the pieces on it
 template <typename T>
 void InverseX_O_Board<T>::display_board() {
+    system("CLS");
 
     if(InverseX_O_Board<T>::win)return;
 

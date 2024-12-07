@@ -99,6 +99,7 @@ bool WordX_O_Board<T>::update_board(int x, int y, T mark) {
 // Display the board and the pieces on it
 template <typename T>
 void WordX_O_Board<T>::display_board() {
+    system("CLS");
     for (int i = 0; i < this->rows; i++) {
         cout << "\n| ";
         for (int j = 0; j < this->columns; j++) {

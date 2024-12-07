@@ -1,73 +1,179 @@
 #include <iostream>
+#include <string>
+#include <limits>
 #include "BoardGame_Classes.h"
+#include "PyramidX_O.h"
+#include "FourInARow.h"
 #include "3x3X_O.h"
 #include "FiveX_O.h"
-#include "PyramidX_O.h"
-#include "InverseX_O.h"
 #include "WordX_O.h"
+#include "InverseX_O.h"
+#include "FourInARow.h"
+#include "FourX_O.h"
 
 using namespace std;
 
 int main() {
-    int choice;
-    Player<char>* players[2];
-    Board<char>* B = new InverseX_O_Board<char>();
-    string playerXName, player2Name;
+    string player1Name, player2Name;
+    int choice, t1, t2;
 
-    cout << "Welcome to FCAI X-O Game. :)\n";
+    while (true) {
+        Player<char>* players[2];
+        Board<char>* B = nullptr;
 
-    // Set up player 1
-    cout << "Enter Player X name: ";
-    cin >> playerXName;
-    cout << "Choose Player X type:\n";
-    cout << "1. Human\n";
-    cout << "2. Random Computer\n";
-    cin >> choice;
+        cout << "******** Select a Game ********\n";
+        cout << "1. Pyramid Tic-Tac-Toe\n";
+        cout << "2. Four-in-a-row\n";
+        cout << "3. 5 x 5 Tic-Tac-Toe\n";
+        cout << "4. Word Tic-Tac-Toe\n";
+        cout << "5. Numerical Tic-Tac-Toe\n";
+        cout << "6. Misere(Inverse) Tic-Tac-Toe\n";
+        cout << "7. 4x4 Tic-Tac-Toe\n";
+        cout << "8. ULTIMATE Tic-Tac-Toe\n";
+        cout << "9. SUS Tic-Tac-Toe\n";
+        cout << "10. Exit\n";
 
-    switch(choice) {
-        case 1:
-            players[0] = new InverseX_O_Player<char>(playerXName, 'X');
+        while (true) {
+            cout << "Enter the game type: ";
+            cin >> choice;
+
+            if (cin.fail() || choice < 1 || choice > 10) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input! Please enter a number between " << 1 << " and " << 10 << ".\n";
+            } else {
+                system("CLS");
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                break;
+            }
+        }
+
+        if (choice == 10) {
+            cout << "Thank you for playing!\n";
             break;
-        case 2:
-            players[0] = new InverseX_O_Random_Player<char>('X');
+        }
+
+        cout<<"Enter Player 1's Name: ";
+        cin>>player1Name;
+
+        while (true) {
+            cout << "Choose Player 1's Type:\n1. Human\n2. Random Computer\n";
+            cin >> t1;
+
+            if (cin.fail() || t1 < 1 || t1 > 2) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input! Please enter either " << 1 << " or " << 2 << ".\n";
+            } else {
+                system("CLS");
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                break;
+            }
+        }
+
+        cout<<"Enter Player 2's Name: ";
+        cin>>player2Name;
+
+        while (true) {
+            cout << "Choose Player 1's Type:\n1. Human\n2. Random Computer\n";
+            cin >> t2;
+
+            if (cin.fail() || t2 < 1 || t2 > 2) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input! Please enter either " << 1 << " or " << 2 << ".\n";
+            } else {
+                system("CLS");
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                break;
+            }
+        }
+
+        switch (choice) {
+            case 1: {
+                B = new PyramidX_O_Board<char>();
+                players[0] = (t1 == 1)
+                ? static_cast<Player<char>*>(new PyramidX_0_Player<char>(player1Name, 'X'))
+                : static_cast<Player<char>*>(new PyramidX_0_Random_Player<char>('X'));
+                players[1] = (t2 == 1)
+                ? static_cast<Player<char>*>(new PyramidX_0_Player<char>(player2Name, 'O'))
+                : static_cast<Player<char>*>(new PyramidX_0_Random_Player<char>('O'));
+                break;
+            }
+            case 2: {
+                B = new FourInARowBoard<char>();
+                players[0] = (t1 == 1)
+                    ? static_cast<Player<char>*>(new X_O_Player<char>(player1Name, 'X'))
+                    : static_cast<Player<char>*>(new X_O_Random_Player<char>('X'));
+                players[1] = (t2 == 1)
+                    ? static_cast<Player<char>*>(new X_O_Player<char>(player2Name, 'O'))
+                    : static_cast<Player<char>*>(new X_O_Random_Player<char>('O'));
+                break;
+            }
+            case 3: {
+                B = new FiveX_O_Board<char>();
+                players[0] = (t1 == 1)
+                    ? static_cast<Player<char>*>(new FiveX_O_Player<char>(player1Name, 'X'))
+                    : static_cast<Player<char>*>(new FiveX_O_Random_Player<char>('X'));
+                players[1] = (t2 == 1)
+                    ? static_cast<Player<char>*>(new FiveX_O_Player<char>(player2Name, 'O'))
+                    : static_cast<Player<char>*>(new FiveX_O_Random_Player<char>('O'));
+                break;
+            }
+            case 5: {
+                // Numerical
+                break;
+            }
+            case 4: {
+                B = new WordX_O_Board<char>();
+                players[0] = (t1 == 1)
+                    ? static_cast<Player<char>*>(new WordX_O_Player<char>(player1Name, 'X'))
+                    : static_cast<Player<char>*>(new WordX_O_Random_Player<char>('X'));
+                players[1] = (t2 == 1)
+                    ? static_cast<Player<char>*>(new WordX_O_Player<char>(player2Name, 'O'))
+                    : static_cast<Player<char>*>(new WordX_O_Random_Player<char>('O'));
+                break;
+            }
+        case 6: {
+            B = new InverseX_O_Board<char>();
+            players[0] = (t1 == 1)
+            ? static_cast<Player<char>*>(new InverseX_O_Player<char>(player1Name, 'X'))
+            : static_cast<Player<char>*>(new InverseX_O_Random_Player<char>('X'));
+            players[1] = (t2 == 1)
+            ? static_cast<Player<char>*>(new InverseX_O_Player<char>(player2Name, 'O'))
+            : static_cast<Player<char>*>(new InverseX_O_Random_Player<char>('O'));
             break;
-        default:
-            cout << "Invalid choice for Player 1. Exiting the game.\n";
-            return 1;
-    }
+        }
+            case 7: {
+                B = new FourX_O_Board<char>();
+                players[0] = (t1 == 1)
+                ? static_cast<Player<char>*>(new FourX_O_Player<char>(player1Name, 'X'))
+                : static_cast<Player<char>*>(new FourX_O_Random_Player<char>('X'));
+                players[1] = (t2 == 1)
+                ? static_cast<Player<char>*>(new FourX_O_Player<char>(player2Name, 'O'))
+                : static_cast<Player<char>*>(new FourX_O_Random_Player<char>('O'));
+                break;
+            }
+            case 8: {
+                // Ultimate Tic Tac Toe
+                break;
+            }
+            case 9: {
+                // SUS Tic Tac Toe
+                break;
+            }
+}
 
-    // Set up player 2
-    cout << "Enter Player 2 name: ";
-    cin >> player2Name;
-    cout << "Choose Player 2 type:\n";
-    cout << "1. Human\n";
-    cout << "2. Random Computer\n";
-    cin >> choice;
+        GameManager<char> game(B, players);
+        game.run();
 
-    switch(choice) {
-        case 1:
-            players[1] = new InverseX_O_Player<char>(player2Name, 'O');
-            break;
-        case 2:
-            players[1] = new InverseX_O_Random_Player<char>('O');
-            break;
-        default:
-            cout << "Invalid choice for Player 2. Exiting the game.\n";
-            return 1;
-    }
 
-    // Create the game manager and run the game
-    GameManager<char> X_0_game(B, players);
-    X_0_game.run();
-
-    // Clean up
-    delete B;
-    for (int i = 0; i < 2; ++i) {
-        delete players[i];
+        // Clean up for restart
+        delete B;
+        for (auto& player : players) {
+            delete player;
+        }
     }
 
     return 0;
 }
-
-
-

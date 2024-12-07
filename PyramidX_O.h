@@ -123,6 +123,7 @@ bool PyramidX_O_Board<T>::update_board(int x, int y, T mark) {
 // Display the board and the pieces on it
 template <typename T>
 void PyramidX_O_Board<T>::display_board() {
+    system("CLS");
     this->columns=-1;
     for (int i = 0; i < this->rows; i++) {
         this->columns+=2;

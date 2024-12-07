@@ -51,12 +51,20 @@ template <typename T>
 FourX_O_Board<T>::FourX_O_Board() {
     this->rows = this->columns = 4;
     this->board = new char*[this->rows];
-    for (int i = 0; i < this->rows; i++) {
+    for (int i = 1; i < this->rows; i++) {
         this->board[i] = new char[this->columns];
         for (int j = 0; j < this->columns; j++) {
             this->board[i][j] = 0;
         }
     }
+    this->board[0][0] = 'X';
+    this->board[0][1] = 'O';
+    this->board[0][2] = 'X';
+    this->board[0][3] = 'O';
+    this->board[3][0] = 'O';
+    this->board[3][1] = 'X';
+    this->board[3][2] = 'O';
+    this->board[3][3] = 'X';
     this->n_moves = 0;
 }
 
@@ -81,6 +89,7 @@ bool FourX_O_Board<T>::update_board(int x, int y, T mark) {
 // Display the board and the pieces on it
 template <typename T>
 void FourX_O_Board<T>::display_board() {
+    system("CLS");
     for (int i = 0; i < this->rows; i++) {
         cout << "\n| ";
         for (int j = 0; j < this->columns; j++) {
