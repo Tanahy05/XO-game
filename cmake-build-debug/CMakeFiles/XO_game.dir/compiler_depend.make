@@ -309,6 +309,7 @@ CMakeFiles/XO_game.dir/main.cpp.obj: C:/Users/Lenovo/Desktop/XO-game/main.cpp \
   C:/Users/Lenovo/Desktop/XO-game/BoardGame_Classes.h \
   C:/Users/Lenovo/Desktop/XO-game/FiveX_O.h \
   C:/Users/Lenovo/Desktop/XO-game/FourInARow.h \
+  C:/Users/Lenovo/Desktop/XO-game/FourX_O.h \
   C:/Users/Lenovo/Desktop/XO-game/InverseX_O.h \
   C:/Users/Lenovo/Desktop/XO-game/PyramidX_O.h \
   C:/Users/Lenovo/Desktop/XO-game/WordX_O.h
@@ -367,6 +368,8 @@ C:/Program\ Files/JetBrains/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32
 C:/Program\ Files/JetBrains/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/alloc_traits.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/allocated_ptr.h:
+
+C:/Users/Lenovo/Desktop/XO-game/FourX_O.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2023.3.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/exception.h:
 

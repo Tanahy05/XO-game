@@ -1,14 +1,22 @@
+/*   FOUR IN A ROW, NUMERICAL,SUS HEADERS:
+ *   Missing Identification ( Abstract using default X_O board and players)
+ *
+ *   Added system("CLS") to all headers except the three above and the Word because it didnt work in it
+ *
+ *   NUMERICAL doesn't have numbers on the cells of xo -> ex. |(0,0)|(0,1)|(0,2)|
+ *
+ *   If you have time run all games(I did so but just to make sure
+ */
+
+
 #include <iostream>
 #include <string>
 #include <limits>
 #include "BoardGame_Classes.h"
 #include "PyramidX_O.h"
-#include "FourInARow.h"
-#include "3x3X_O.h"
 #include "FiveX_O.h"
 #include "WordX_O.h"
 #include "InverseX_O.h"
-#include "FourInARow.h"
 #include "FourX_O.h"
 
 using namespace std;
@@ -101,13 +109,7 @@ int main() {
                 break;
             }
             case 2: {
-                B = new FourInARowBoard<char>();
-                players[0] = (t1 == 1)
-                    ? static_cast<Player<char>*>(new X_O_Player<char>(player1Name, 'X'))
-                    : static_cast<Player<char>*>(new X_O_Random_Player<char>('X'));
-                players[1] = (t2 == 1)
-                    ? static_cast<Player<char>*>(new X_O_Player<char>(player2Name, 'O'))
-                    : static_cast<Player<char>*>(new X_O_Random_Player<char>('O'));
+                // Four in a row
                 break;
             }
             case 3: {
@@ -134,33 +136,36 @@ int main() {
                     : static_cast<Player<char>*>(new WordX_O_Random_Player<char>('O'));
                 break;
             }
-        case 6: {
-            B = new InverseX_O_Board<char>();
-            players[0] = (t1 == 1)
-            ? static_cast<Player<char>*>(new InverseX_O_Player<char>(player1Name, 'X'))
-            : static_cast<Player<char>*>(new InverseX_O_Random_Player<char>('X'));
-            players[1] = (t2 == 1)
-            ? static_cast<Player<char>*>(new InverseX_O_Player<char>(player2Name, 'O'))
-            : static_cast<Player<char>*>(new InverseX_O_Random_Player<char>('O'));
-            break;
-        }
-            case 7: {
-                B = new FourX_O_Board<char>();
+            case 6: {
+                B = new InverseX_O_Board<char>();
                 players[0] = (t1 == 1)
-                ? static_cast<Player<char>*>(new FourX_O_Player<char>(player1Name, 'X'))
-                : static_cast<Player<char>*>(new FourX_O_Random_Player<char>('X'));
+                ? static_cast<Player<char>*>(new InverseX_O_Player<char>(player1Name, 'X'))
+                : static_cast<Player<char>*>(new InverseX_O_Random_Player<char>('X'));
                 players[1] = (t2 == 1)
-                ? static_cast<Player<char>*>(new FourX_O_Player<char>(player2Name, 'O'))
-                : static_cast<Player<char>*>(new FourX_O_Random_Player<char>('O'));
+                ? static_cast<Player<char>*>(new InverseX_O_Player<char>(player2Name, 'O'))
+                : static_cast<Player<char>*>(new InverseX_O_Random_Player<char>('O'));
                 break;
             }
-            case 8: {
-                // Ultimate Tic Tac Toe
-                break;
-            }
-            case 9: {
-                // SUS Tic Tac Toe
-                break;
+                case 7: {
+                    B = new FourX_O_Board<char>();
+                    players[0] = (t1 == 1)
+                    ? static_cast<Player<char>*>(new FourX_O_Player<char>(player1Name, 'X'))
+                    : static_cast<Player<char>*>(new FourX_O_Random_Player<char>('X'));
+                    players[1] = (t2 == 1)
+                    ? static_cast<Player<char>*>(new FourX_O_Player<char>(player2Name, 'O'))
+                    : static_cast<Player<char>*>(new FourX_O_Random_Player<char>('O'));
+                    break;
+                }
+                case 8: {
+                    // Ultimate Tic Tac Toe
+                    break;
+                }
+                case 9: {
+                    // SUS Tic Tac Toe
+                    break;
+                }
+                default: {
+                 break;
             }
 }
 

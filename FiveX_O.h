@@ -121,8 +121,8 @@ void FiveX_O_Board<T>::count_patterns() {
     reset_counters();
 
     // Check rows
-    for (int i = 0; i < this->rows; i++) {
-        for (int j = 0; j <= this->columns - 3; j++) {
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j <= 2; j++) {
             if (this->board[i][j] != 0 &&
                 this->board[i][j] == this->board[i][j + 1] &&
                 this->board[i][j + 1] == this->board[i][j + 2]) {
@@ -133,8 +133,8 @@ void FiveX_O_Board<T>::count_patterns() {
     }
 
     // Check columns
-    for (int j = 0; j < this->columns; j++) {
-        for (int i = 0; i <= this->rows - 3; i++) {
+    for (int j = 0; j < 5; j++) {
+        for (int i = 0; i <= 2; i++) {
             if (this->board[i][j] != 0 &&
                 this->board[i][j] == this->board[i + 1][j] &&
                 this->board[i + 1][j] == this->board[i + 2][j]) {
@@ -145,8 +145,8 @@ void FiveX_O_Board<T>::count_patterns() {
     }
 
     // Check diagonals (top-left to bottom-right)
-    for (int i = 0; i <= this->rows - 3; i++) {
-        for (int j = 0; j <= this->columns - 3; j++) {
+    for (int i = 0; i <= 2; i++) {
+        for (int j = 0; j <= 2; j++) {
             if (this->board[i][j] != 0 &&
                 this->board[i][j] == this->board[i + 1][j + 1] &&
                 this->board[i + 1][j + 1] == this->board[i + 2][j + 2]) {
@@ -157,8 +157,8 @@ void FiveX_O_Board<T>::count_patterns() {
     }
 
     // Check diagonals (top-right to bottom-left)
-    for (int i = 0; i <= this->rows - 3; i++) {
-        for (int j = 2; j < this->columns; j++) {
+    for (int i = 0; i <= 2; i++) {
+        for (int j = 2; j < 5; j++) {
             if (this->board[i][j] != 0 &&
                 this->board[i][j] == this->board[i + 1][j - 1] &&
                 this->board[i + 1][j - 1] == this->board[i + 2][j - 2]) {

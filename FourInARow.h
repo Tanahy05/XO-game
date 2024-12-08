@@ -30,9 +30,9 @@ FourInARowPlayer<T>::FourInARowPlayer(string name, T symbol) : Player<T>(name, s
 
 
 template <typename T>
-class FourInARowX_O_Random_Player : public RandomPlayer<T>{
+class X_O_Random_Player : public RandomPlayer<T>{
 public:
-    FourInARowX_O_Random_Player (T symbol);
+    X_O_Random_Player (T symbol);
     void getmove(int &x, int &y,int &n) ;
 };
 template <typename T>
@@ -210,7 +210,7 @@ bool FourInARowBoard<T>::game_is_over() {
 
 // Constructor for X_O_Random_Player
 template <typename T>
-FourInARowX_O_Random_Player<T>::FourInARowX_O_Random_Player(T symbol) : RandomPlayer<T>(symbol) {
+X_O_Random_Player<T>::X_O_Random_Player(T symbol) : RandomPlayer<T>(symbol) {
     this->dimension = 3;
     this->name = "Random Computer Player";
     srand(static_cast<unsigned int>(time(0)));  // Seed the random number generator
@@ -218,7 +218,7 @@ FourInARowX_O_Random_Player<T>::FourInARowX_O_Random_Player(T symbol) : RandomPl
 
 
 template <typename T>
-void FourInARowX_O_Random_Player<T>::getmove(int& x, int& y, int& number) {
+void X_O_Random_Player<T>::getmove(int& x, int& y, int& number) {
     const int MIN_NUM = 1;     // Minimum allowed number
     const int MAX_NUM = 9;     // Maximum allowed number
 

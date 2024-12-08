@@ -25,6 +25,8 @@ public:
     FourX_O_Player (string name, T symbol);
     void getmove(int& x, int& y) ;
 
+private:
+    int from_x,from_y,to_x,to_y;
 };
 
 template <typename T>
@@ -32,6 +34,9 @@ class FourX_O_Random_Player : public RandomPlayer<T>{
 public:
     FourX_O_Random_Player (T symbol);
     void getmove(int &x, int &y) ;
+
+private:
+    int from_x,from_y,to_x,to_y;
 };
 
 
@@ -51,38 +56,44 @@ template <typename T>
 FourX_O_Board<T>::FourX_O_Board() {
     this->rows = this->columns = 4;
     this->board = new char*[this->rows];
-    for (int i = 1; i < this->rows; i++) {
+
+    for (int i = 0; i < this->rows; i++) {
         this->board[i] = new char[this->columns];
         for (int j = 0; j < this->columns; j++) {
-            this->board[i][j] = 0;
+            if (i == 0) {
+                this->board[i][j] = (j % 2 == 0) ? 'X' : 'O';
+            } else if (i == this->rows - 1) {
+                this->board[i][j] = (j % 2 == 0) ? 'O' : 'X';
+            } else {
+                this->board[i][j] = 0;
+            }
         }
     }
-    this->board[0][0] = 'X';
-    this->board[0][1] = 'O';
-    this->board[0][2] = 'X';
-    this->board[0][3] = 'O';
-    this->board[3][0] = 'O';
-    this->board[3][1] = 'X';
-    this->board[3][2] = 'O';
-    this->board[3][3] = 'X';
-    this->n_moves = 0;
 }
+
+
 
 template <typename T>
 bool FourX_O_Board<T>::update_board(int x, int y, T mark) {
-    // Only update if move is valid
-    if (!(x < 0 || x >= this->rows || y < 0 || y >= this->columns) && (this->board[x][y] == 0|| mark == 0)) {
-        if (mark == 0){
-            this->n_moves--;
-            this->board[x][y] = 0;
-        }
-        else {
-            this->n_moves++;
-            this->board[x][y] = toupper(mark);
+    int from_x = x / 100, from_y = y / 100;
+    int to_x = x % 100, to_y = y % 100;
+
+    // Check bounds
+    if (from_x < 0 || from_x >= this->rows || from_y < 0 || from_y >= this->columns ||
+        to_x < 0 || to_x >= this->rows || to_y < 0 || to_y >= this->columns) {
+        return false;
         }
 
+    // Check if the move is valid
+    if (this->board[from_x][from_y] == mark &&
+        this->board[to_x][to_y] == 0 &&
+        (from_x == to_x || from_y == to_y)) {
+
+        this->board[from_x][from_y] = 0;
+        this->board[to_x][to_y] = toupper(mark);
         return true;
-    }
+        }
+
     return false;
 }
 
@@ -105,51 +116,53 @@ void FourX_O_Board<T>::display_board() {
 template <typename T>
 bool FourX_O_Board<T>::is_win() {
     // Check rows
-    for (int i = 0; i < this->rows; i++) {
-        for (int j = 0; j < this->columns - 1; j++) {
-            // Check for rows
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j <= 1; j++) {
             if (this->board[i][j] != 0 &&
                 this->board[i][j] == this->board[i][j + 1] &&
-                this->board[i][j + 1] == this->board[i][j + 2]) {
+                this->board[i][j] == this->board[i][j + 2]) {
                 return true;
                 }
         }
     }
 
     // Check columns
-    for (int j = 0; j < this->columns; j++) {
-        for (int i = 0; i < this->rows - 1; i++) {
+    for (int j = 0; j < 4; j++) {
+        for (int i = 0; i <= 1; i++) {
             if (this->board[i][j] != 0 &&
-            this->board[i][j] == this->board[i + 1][j] &&
-            this->board[i + 1][j] == this->board[i + 2][j]) {
-                return true;
-            }
-            }
-        }
-
-    // Checks Diagonals
-    for (int i = 0; i < this->rows - 1; i++) {
-        for (int j = 0; j < this->columns - 2; j++) {
-            // Check top left to bottom right diagonal
-            if (this->board[i][j] != 0 &&
-                this->board[i][j] == this->board[i + 1][j + 1] &&
-                this->board[i + 1][j + 1] == this->board[i + 2][j + 2]) {
+                this->board[i][j] == this->board[i + 1][j] &&
+                this->board[i][j] == this->board[i + 2][j]) {
                 return true;
                 }
-            // Check top right to bottom left diagonal
+        }
+    }
+
+    // Check diagonals
+    for (int i = 0; i <= 1; i++) {
+        for (int j = 0; j <= 1; j++) {
+            // Top-left to bottom-right
+            if (this->board[i][j] != 0 &&
+                this->board[i][j] == this->board[i + 1][j + 1] &&
+                this->board[i][j] == this->board[i + 2][j + 2]) {
+                return true;
+                }
+            // Top-right to bottom-left
             if (this->board[i][j + 2] != 0 &&
                 this->board[i][j + 2] == this->board[i + 1][j + 1] &&
-                this->board[i + 1][j + 1] == this->board[i + 2][j]){return true;}
+                this->board[i][j + 2] == this->board[i + 2][j]) {
+                return true;
+                }
         }
     }
 
     return false;
 }
 
+
 // Return true if 9 moves are done and no winner
 template <typename T>
 bool FourX_O_Board<T>::is_draw() {
-    return (this->n_moves == 9 && !is_win());
+    return false;
 }
 
 template <typename T>
@@ -165,14 +178,18 @@ FourX_O_Player<T>::FourX_O_Player(string name, T symbol) : Player<T>(name, symbo
 
 template <typename T>
 void FourX_O_Player<T>::getmove(int& x, int& y) {
-    cout << "\nPlease enter your move x and y (0 to 3) separated by spaces: ";
-    cin >> x >> y;
+    cout << "\nPlease select the symbol of your move, x and y (0 to 3) separated by spaces: ";
+    cin >> from_x >> from_y;
+    cout<<"\nPlease enter the position you want to move it to , x and y (0 to 3) separated by spaces: ";
+    cin>>to_x>>to_y;
+    x=from_x*100+to_x;
+    y=from_y*100+to_y;
 }
 
 // Constructor for FourX_O_Random_Player
 template <typename T>
 FourX_O_Random_Player<T>::FourX_O_Random_Player(T symbol) : RandomPlayer<T>(symbol) {
-    this->dimension = 3;
+    this->dimension = 4;
     this->name = "Random Computer Player";
     srand(static_cast<unsigned int>(time(0)));  // Seed the random number generator
 }

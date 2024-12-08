@@ -309,4 +309,5 @@ CMakeFiles/XO_game.dir/main.cpp.obj: \
  C:\Users\Lenovo\Desktop\XO-game\3x3X_O.h \
  C:\Users\Lenovo\Desktop\XO-game\FiveX_O.h \
  C:\Users\Lenovo\Desktop\XO-game\WordX_O.h \
- C:\Users\Lenovo\Desktop\XO-game\InverseX_O.h
+ C:\Users\Lenovo\Desktop\XO-game\InverseX_O.h \
+ C:\Users\Lenovo\Desktop\XO-game\FourX_O.h
